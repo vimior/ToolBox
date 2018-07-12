@@ -393,7 +393,7 @@ self.renameFolder = (folderName) => {
         };
       };
       self.selectNode.path = newPath;
-      self.selectFilePath = self.selectNode.path;
+      // self.selectFilePath = self.selectNode.path;
       self.saveProject(self.getProject);
     };
   });

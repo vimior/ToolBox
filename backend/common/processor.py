@@ -18,6 +18,7 @@ class MessageProcessor(object):
     @gen.coroutine
     def process_message(self, client, msg):
         cmd = msg.get('cmd')
+        print(cmd)
         if hasattr(define.command, cmd):
             func = getattr(define.command, cmd)
             yield func(client, msg['id'], msg.get('data', {}))
