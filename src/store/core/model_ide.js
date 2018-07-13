@@ -146,7 +146,6 @@ self.getProject = (projectName, callback) => {
   self.sendCmd(window.GlobalUtil.constant.IDE_GET_PROJECT, params, (dict) => {
     if (dict.code === 0) {
       self.codeItems = [];
-      self.selectFilePath = null;
       self.curProjExpandedKeys = [];
       self.curProjConfig = dict.data.config;
       self.curProjTree = dict.data;
@@ -162,7 +161,9 @@ self.getProject = (projectName, callback) => {
             for (let i = 0; i < node.children.length; i++) {
               if (node.children[i].path === dict.data.config.selectFilePath) {
                 self.selectNode = node.children[i];
-                self.projElTree.setCurrentNode(self.selectNode);
+                if (self.projElTree !== undefined && self.projElTree !== null) {
+                  self.projElTree.setCurrentNode(self.selectNode);
+                }
               }
             }
             break;

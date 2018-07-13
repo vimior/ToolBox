@@ -6,6 +6,7 @@
 #
 # Author: Vinman <vinman.cub@gmail.com>
 
+import json
 import threading
 import paramiko
 import queue
@@ -59,9 +60,11 @@ class SSHThread(threading.Thread):
             except:
                 pass
             print('ssh stop')
-        except:
+        except Exception as e:
+            print(e)
             try:
-                self.client.write_message('connect failed')
+                self.client.write_message('connect failed\n')
+                time.sleep(0.5)
                 self.client.close()
             except:
                 pass
@@ -92,15 +95,14 @@ class WebSocketHandler(websocket.WebSocketHandler):
         self._connected = True
         if self.info['type'] == 'ssh':
             self._info['ssh'] = {
-                'host': self.get_argument('host', 'localhost'),
-                'port': self.get_argument('port', 22),
-                'username': self.get_argument('username'),
-                'password': self.get_argument('password'),
+                'host': None,
+                'port': None,
+                'username': None,
+                'password': None,
                 'sshclient': None,
                 'channel': None,
                 'wx_que': None,
             }
-            SSHThread(self).start()
         logger.debug('A new ws client [type:{}] [id:{}] [addr:{}], {}'.format(
             self.info['type'],
             self.info['id'],
@@ -119,7 +121,18 @@ class WebSocketHandler(websocket.WebSocketHandler):
         if self.info['type'] == 'cmd':
             push_req_queue(self, message)
         elif self.info['type'] == 'ssh':
-            if self.info['ssh']['wx_que'] is not None:
+            if self.info['ssh']['sshclient'] is None:
+                try:
+                    jsonData = json.loads(message)
+                    if jsonData['cmd'] == 'ssh_connect':
+                      self.info['ssh']['host'] = jsonData['data']['host']
+                      self.info['ssh']['port'] = jsonData['data']['port']
+                      self.info['ssh']['username'] = jsonData['data']['username']
+                      self.info['ssh']['password'] = jsonData['data']['password']
+                      SSHThread(self).start()
+                except:
+                  pass
+            elif self.info['ssh']['wx_que'] is not None:
                 self.info['ssh']['wx_que'].put(message)
 
 

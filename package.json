@@ -16,14 +16,15 @@
   "dependencies": {
     "codemirror": "^5.39.0",
     "element-ui": "^2.4.3",
-    "node-sass": "^4.9.2",
+    "node-sass": "4.9.2",
     "sass-loader": "^7.0.3",
     "scss-loader": "0.0.1",
     "vue": "^2.5.2",
     "vue-codemirror": "^4.0.5",
     "vue-i18n": "^8.0.0",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "xterm": "^3.5.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
