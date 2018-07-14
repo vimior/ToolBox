@@ -1,6 +1,9 @@
 import * as types from './mutation-types';
 
 export const openWebsocket = ({ commit }) => {
+  if (window.GlobalUtil.model.socketModel.socketInfo.socket !== null) {
+    return;
+  }
   window.GlobalUtil.model.socketModel.init_socket(window.GlobalUtil.socketInfo);
   window.GlobalUtil.model.socketModel.init_onopen(()=> {
     window.GlobalUtil.model.socketModel.socketInfo.connected = true;

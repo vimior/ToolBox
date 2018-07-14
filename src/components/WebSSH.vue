@@ -6,21 +6,26 @@
     <div class="webssh-area">
       <div class="webssh-config">
         <div>
-          <span class="webssh-config-text">{{$t('host')}}:</span>
-          <input class="webssh-config-input webssh-config-host" type="text" placeholder="host" v-model="model.sshModel.sshInfo.host">
+          <el-tag type="info" class="webssh-config-text">{{$t('host')}}:</el-tag>
+          <el-input clearable class="webssh-config-input webssh-config-host" type="text" placeholder="host" v-model="model.sshModel.sshInfo.host"></el-input>
+          <!-- <input class="webssh-config-input webssh-config-host" type="text" placeholder="host" v-model="model.sshModel.sshInfo.host"> -->
         </div>
         <div>
-          <span class="webssh-config-text">{{$t('post')}}:</span>
-          <input class="webssh-config-input webssh-config-port" type="text" placeholder="port" v-model="model.sshModel.sshInfo.port">
+          <el-tag type="info" class="webssh-config-text">{{$t('post')}}:</el-tag>
+          <el-input clearable class="webssh-config-input webssh-config-port" type="text" placeholder="port" v-model="model.sshModel.sshInfo.port"></el-input>
+          <!-- <input class="webssh-config-input webssh-config-port" type="text" placeholder="port" v-model="model.sshModel.sshInfo.port"> -->
         </div>
         <div>
-          <span class="webssh-config-text">{{$t('username')}}:</span>
-          <input class="webssh-config-input webssh-config-username" type="text" placeholder="username" v-model="model.sshModel.sshInfo.username">
+          <el-tag type="info" class="webssh-config-text">{{$t('username')}}:</el-tag>
+          <el-input clearable class="webssh-config-input webssh-config-username" type="text" placeholder="username" v-model="model.sshModel.sshInfo.username"></el-input>
+          <!-- <input class="webssh-config-input webssh-config-username" type="text" placeholder="username" v-model="model.sshModel.sshInfo.username"> -->
         </div>
         <div>
-          <span class="webssh-config-text">{{$t('password')}}:</span>
-          <input class="webssh-config-input webssh-config-password" type="password" v-if="!model.sshModel.sshInfo.showPassword" placeholder="password" v-model="model.sshModel.sshInfo.password">
-          <input class="webssh-config-input webssh-config-password" type="text" v-else placeholder="password" v-model="model.sshModel.sshInfo.password">
+          <el-tag type="info" class="webssh-config-text">{{$t('password')}}:</el-tag>
+          <el-input clearable class="webssh-config-input webssh-config-password" type="password" v-if="!model.sshModel.sshInfo.showPassword" placeholder="password" v-model="model.sshModel.sshInfo.password"></el-input>
+          <el-input clearable class="webssh-config-input webssh-config-password" type="text" v-else placeholder="password" v-model="model.sshModel.sshInfo.password"></el-input>
+          <!-- <input class="webssh-config-input webssh-config-password" type="password" v-if="!model.sshModel.sshInfo.showPassword" placeholder="password" v-model="model.sshModel.sshInfo.password">
+          <input class="webssh-config-input webssh-config-password" type="text" v-else placeholder="password" v-model="model.sshModel.sshInfo.password"> -->
           <el-checkbox type="checkbox" v-model="model.sshModel.sshInfo.showPassword"  title="visible"></el-checkbox>
         </div>
         <el-button class="webssh-connect-btn" @click="connectSSH()">{{$t('connectSSH')}}</el-button>
@@ -30,12 +35,23 @@
           <Terminal :term="term" :currentIndex="index"></Terminal>
         </template>
       </div> -->
+      <!-- <div class="terminal-group">
+        <div style="border:1px red  solid;overflow-y:scroll;">
+        <el-collapse v-if="model.sshModel.termItems.length !== 0" v-model="activeTerms">
+          <template v-for="(term, index) in model.sshModel.termItems">
+              <Terminal :term="term" :currentIndex="index"></Terminal>
+          </template>
+        </el-collapse>
+        </div>
+      </div> -->
       <div class="terminal-group">
-      <el-collapse v-if="model.sshModel.termItems.length !== 0" v-model="activeTerms">
-        <template v-for="(term, index) in model.sshModel.termItems">
-            <Terminal :term="term" :currentIndex="index"></Terminal>
-        </template>
-      </el-collapse>
+        <div  class="terminal-group-area">
+          <el-collapse v-if="model.sshModel.termItems.length !== 0" v-model="activeTerms">
+            <template v-for="(term, index) in model.sshModel.termItems">
+                <Terminal :term="term" :currentIndex="index"></Terminal>
+            </template>
+          </el-collapse>
+        </div>
       </div>
     </div>
   </div>
@@ -70,6 +86,7 @@ export default {
   data() {
     return {
       model: window.GlobalUtil.model,
+      testData: 'hello',
     }
   },
   methods: {
@@ -140,18 +157,39 @@ export default {
   },
 }
 </script>
+<style>
+.el-input__inner {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 32px;
+  line-height: 32px;
+  outline: 0;
+  padding: 0 15px;
+  -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+  transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+  width: 100%;
+}
+html, body {
+  overflow:  hidden !important;
+}
+</style>
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .app-container {
   width: 100%;
   height:100%;
   border-left: 1px solid rgba(137, 137, 137, 0.35);
-  // overflow: auto;
-  overflow: hidden;
 }
 .webssh-area {
-  // margin: auto;
-  /*display: flex;*/
   overflow: hidden;
   .webssh-config {
     position: fixed;
@@ -160,48 +198,22 @@ export default {
     right: 0;
     z-index: 1500;
     background: white;
-    // margin: auto;
-    // margin-top: 10px;
-    // margin-left: 100px;
-    /*display: flex;*/
-    /*width: 19%;*/
-    /*justify-content: flex-start;*/
-    // align-items: center;
-    /*flex-direction: column;*/
     text-align: center;
     &>div {
      margin: 5px;
      display: inline-block;
     }
-    span {
-      margin: 6px;
-      padding: 6px 0;
-      // width: 65px;
-      display: inline-block;
-      text-align: right;
-    }
-    // input[type=text],input[type=password] {
-    //   // border: none;
-    //   width: 80px;
-    //   padding: 8px 10px;
-    //   color: #666;
-    // }
-    .webssh-config-input {
-      border: 1px solid;
-      padding: 8px 10px;
-      color: #666;
-    }
     .webssh-config-host {
-      width: 100px;
+      width: 160px;
     }
     .webssh-config-port {
-      width: 45px;
+      width: 90px;
     }
     .webssh-config-username {
-      width: 80px;
+      width: 150px;
     }
     .webssh-config-password {
-      width: 80px;
+      width: 150px;
     }
     .webssh-connect-btn {
       line-height: 36px;
@@ -210,14 +222,23 @@ export default {
     }
   }
   .terminal-group {
-    // position: fixed;
-    margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 10%;
+    position: absolute;
+    /* border:1px blue solid; */
     text-align: center;
-    // overflow-y: auto;
-    overflow-x: hidden;
-    // margin-top: 50px;
+    margin-top: 50px; // 5%;
+    margin-bottom: 30px; // 3%;
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 70%;
+    height: 90%;
+    .terminal-group-area {
+      position:absolute;
+      /* border:1px red  solid; */
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
   }
 }
 .app-container::-webkit-scrollbar {/*滚动条整体样式*/

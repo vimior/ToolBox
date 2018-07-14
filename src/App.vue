@@ -10,7 +10,7 @@ export default {
   name: 'App',
   mounted() {
     window.GlobalUtil.store = this.$store;
-    this.$store.dispatch('openWebsocket');
+    // this.$store.dispatch('openWebsocket');
   },
 }
 </script>

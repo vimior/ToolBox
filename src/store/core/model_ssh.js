@@ -10,6 +10,6 @@ self.sshInfo = {
   showPassword: false,
 }
 
-self.termItems = []
+self.termItems = [];
 
 export default self;

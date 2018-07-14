@@ -86,6 +86,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch('openWebsocket');
     window.addEventListener('resize', this.resize);
     this.model.ideModel.getProject();
   },
