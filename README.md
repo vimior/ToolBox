@@ -52,8 +52,8 @@ python server.py
 - 支持折叠和打开某个终端窗口，支持关闭某个终端
 - 暂时只支持固定的终端窗口大小
 
-![avatar](doc/img/webssh/webssh-1.png)
-![avatar](doc/img/webssh/webssh-1.png)
+![image](doc/img/webssh/webssh-1.png)
+![image](doc/img/webssh/webssh-1.png)
 
 
 ## Python-Web-IDE（path=editor）
@@ -74,10 +74,10 @@ python server.py
 - 支持Python代码运行管理和输出
 
 编码:
-![avatar](doc/img/ide/code.png)
+![image](doc/img/ide/code.png)
 补全:
-![avatar](doc/img/ide/complete.png)
+![image](doc/img/ide/complete.png)
 运行:
-![avatar](doc/img/ide/run.png)
+![image](doc/img/ide/run.png)
 
 
