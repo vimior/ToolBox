@@ -142,7 +142,7 @@ export default {
       set(value) {
         this.model.sshModel.termItems.forEach(term => {
           if (value.includes(term.connectedTime)) {
-            if (term.show !== true && term.sockInfo.connected) {
+            if (term.show !== true) {
               term.reload = false;
               this.$nextTick(() => {
                 term.reload = true;
@@ -233,18 +233,24 @@ html, body {
   }
   .terminal-group {
     position: absolute;
-    /* border:1px blue solid; */
+    // border:1px blue solid;
     text-align: center;
-    margin-top: 50px; // 5%;
-    margin-bottom: 30px; // 3%;
-    margin-left: 15%;
-    margin-right: 15%;
-    width: 70%;
+    // margin-top: 50px; // 5%;
+    // margin-bottom: 30px; // 3%;
+    // margin-left: 15%;
+    // margin-right: 15%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 50px;
+    bottom: 30px;
+    width: 750px;
     height: 90%;
     .terminal-group-area {
       position:absolute;
-      /* border:1px red  solid; */
-      width: 100%;
+      // border:1px red  solid;
+      // margin-right: -20px;
+      width: 760px;
       height: 100%;
       overflow-y: auto;
       overflow-x: hidden;

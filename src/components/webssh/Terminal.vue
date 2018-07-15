@@ -9,10 +9,9 @@
     <el-collapse-item v-show="term.invalid === false" :name="term.connectedTime">
       <template slot="title">
         <div class="terminal-header" :id="term.connectedTime">
-          <div class="dialog-close el-icon-close" @click="closeTerminal()"></div>
           <span class="terminal-title">Terminal<i style="color: orange;">({{ term.sockInfo.host }}:{{ term.sockInfo.port }})</i></span>
-          <i style="color:black;"><-------------------></i>
-          <span class="terminal-time" style="color:gray;">{{ term.connectedTime }}</span>
+          <span class="terminal-time" style="color:gray;font-size:8px;">{{ term.connectedTime }}</span>
+          <div class="dialog-close el-icon-close" @click="closeTerminal()"></div>
         </div>
       </template>
       <!-- <div style="display:flex;">
@@ -123,12 +122,18 @@ export default {
     },
     initTerminal() {
       console.log('initTerminal', this.term.connectedTime)
-      if (this.term.sockInfo === null || this.term.sockInfo.sock === null || this.term.sockInfo.sock === undefined || !this.term.sockInfo.connected) {
+      if (this.term.sockInfo === null || this.term.sockInfo.sock === null || this.term.sockInfo.sock === undefined) {
         this.term.sockInfo.sock = new WebSocket('ws://' + this.util.socketInfo.host + '/ws?type=ssh')
         this.term.sockInfo.sock.onopen = this.onOpenTerminal
         this.term.sockInfo.sock.onclose = this.onCloseTerminal
         this.term.sockInfo.sock.onerror = this.onErrorTerminal
         console.log('connect socket')
+      }
+      else if (this.term.sockInfo.connected === false) {
+        const ele = document.getElementById(this.term.connectedTime)
+        if (ele !== null) {
+          ele.style.color = 'red'
+        }
       }
 
       if (this.term.term === null || this.term.term === undefined) {
@@ -163,9 +168,13 @@ export default {
 <style>
 .el-collapse-item__header {
   color: green;
+  font-size: 15px;
+  display: flex;
 }
 .el-collapse-item__header.is-active {
   color: blue;
+  /* background: burlywood; */
+  background: darkslategrey;
 }
 /* .el-collapse-item__arrow {
   margin-left: 20%;
