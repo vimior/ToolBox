@@ -1,7 +1,7 @@
 {
-  "name": "PythonWebIDE",
+  "name": "ToolBox",
   "version": "1.0.0",
-  "description": "A Simple Python Web IDE",
+  "description": "ToolBox",
   "author": "vimior <vinman.cub@gmail.com>",
   "private": true,
   "scripts": {

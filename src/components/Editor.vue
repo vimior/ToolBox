@@ -1,9 +1,8 @@
 <template>
   <div class="main-wrapper editor-wrapper">
-    <!-- <BaseCommonTopMenu
+    <BaseCommonTopMenu
       :backTitle="$t('ide')"
-      style="position:fixed;"
-    ></BaseCommonTopMenu> -->
+    ></BaseCommonTopMenu>
     <TopMenu class="top-menu"></TopMenu>
     <div id="total-frame" class="total-frame">
       <ElTree id="left-frame" class="left-frame float-left"></ElTree>
@@ -182,7 +181,7 @@ export default {
       for (let i = 0; i < this.model.ideModel.codeItems.length; i++) {
         if (this.model.ideModel.codeItems[i].codemirror !== null) {
           // this.model.ideModel.codeItems[i].codemirror.setSize('auto', this.model.ideModel.consoleItems.length === 0 ? window.innerHeight - 120 : window.innerHeight - 355)
-          this.model.ideModel.codeItems[i].codemirror.setSize('auto', this.model.ideModel.consoleItems.length === 0 ? window.innerHeight - 73 : window.innerHeight - 308)
+          this.model.ideModel.codeItems[i].codemirror.setSize('auto', this.model.ideModel.consoleItems.length === 0 ? window.innerHeight - 109 : window.innerHeight - 344)
         }
       }
     },
@@ -223,7 +222,7 @@ a {
   position: fixed;
   width:100%;
   height: 100%;
-  top: 30px;
+  top: 66px;
   /* top: 76px; */
   left: 0;
   /* display: inline-flex; */
@@ -240,7 +239,7 @@ body {
   position: fixed;
   width: 100%;
   height: 36px;
-  top: 0;
+  top: 36px;
   /* top: 40px; */
   left: 0;
   background: #313131;

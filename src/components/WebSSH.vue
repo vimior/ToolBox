@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="app-container">
-    <!-- <BaseCommonTopMenu class="base-top-menu"
-      :backTitle="$t('terminal')">
-    </BaseCommonTopMenu> -->
+    <BaseCommonTopMenu class="base-top-menu"
+      :backTitle="$t('webssh')">
+    </BaseCommonTopMenu>
     <div class="webssh-area">
       <div class="webssh-config">
         <div>
@@ -66,7 +66,7 @@ export default {
   i18n: {
     messages: {
       en: {
-        terminal: 'Terminal',
+        webssh: 'WebSSH',
         host: 'Host',
         port: 'Port',
         username: 'Username',
@@ -74,7 +74,7 @@ export default {
         connectSSH: 'Connect',
       },
       cn: {
-        terminal: '终端',
+        webssh: '在线SSH工具',
         host: '主机',
         port: '端口',
         username: '用户名',
@@ -199,11 +199,18 @@ html, body {
   height:100%;
   border-left: 1px solid rgba(137, 137, 137, 0.35);
 }
+// .base-top-menu {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+// }
 .webssh-area {
   overflow: hidden;
   .webssh-config {
-    position: fixed;
-    top: 0;
+    // position: fixed;
+    position: absolute;
+    top: 40px;
     left: 0;
     right: 0;
     z-index: 1500;
@@ -242,7 +249,7 @@ html, body {
     margin: auto;
     left: 0;
     right: 0;
-    top: 50px;
+    top: 180px;
     bottom: 30px;
     width: 750px;
     height: 90%;

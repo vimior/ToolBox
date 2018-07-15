@@ -37,10 +37,15 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
   .back-title {
     margin-left: 1rem;
     font-family: 'Gotham-Bold';
-    font-size: 18px;
+    font-size: 20px;
     color: #444;
     letter-spacing: -1px;
   }
