@@ -53,7 +53,7 @@ python server.py
 - 暂时只支持固定的终端窗口大小
 
 ![image](doc/img/webssh/webssh-1.png)
-![image](doc/img/webssh/webssh-1.png)
+![image](doc/img/webssh/webssh-2.png)
 
 
 ## Python-Web-IDE（path=editor）
