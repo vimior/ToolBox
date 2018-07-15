@@ -3,10 +3,10 @@ const SSHModel = {};
 const self = SSHModel;
 
 self.sshInfo = {
-  host: '192.168.1.182',
+  host: '192.168.0.103',
   port: 22,
-  username: 'uf',
-  password: 'xuf',
+  username: 'vinman',
+  password: 'vinman',
   showPassword: false,
 }
 

@@ -48,7 +48,7 @@
         <div  class="terminal-group-area">
           <el-collapse v-if="model.sshModel.termItems.length !== 0" v-model="activeTerms">
             <template v-for="(term, index) in model.sshModel.termItems">
-                <Terminal :term="term" :currentIndex="index"></Terminal>
+                <Terminal :term="term" :currentIndex="index" v-if="term.reload"></Terminal>
             </template>
           </el-collapse>
         </div>
@@ -86,7 +86,6 @@ export default {
   data() {
     return {
       model: window.GlobalUtil.model,
-      testData: 'hello',
     }
   },
   methods: {
@@ -113,6 +112,7 @@ export default {
         term: null,
         show: true,
         invalid: false,
+        reload: true,
         connectedTime: (new Date()).toLocaleString(),
       })
       // document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight
@@ -142,12 +142,22 @@ export default {
       set(value) {
         this.model.sshModel.termItems.forEach(term => {
           if (value.includes(term.connectedTime)) {
+            if (term.show !== true && term.sockInfo.connected) {
+              term.reload = false;
+              this.$nextTick(() => {
+                term.reload = true;
+              })
+            }
             term.show = true
           }
           else {
             term.show = false
           }
         });
+        // this.isReload = false;
+        // this.$nextTick(() => {
+        //   this.isReload = true;
+        // })
       }
     },
   },

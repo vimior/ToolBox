@@ -9,18 +9,18 @@
     <el-collapse-item v-show="term.invalid === false" :name="term.connectedTime">
       <template slot="title">
         <div class="terminal-header" :id="term.connectedTime">
-          <!-- <div class="dialog-close el-icon-close" @click="closeTerminal()"></div> -->
+          <div class="dialog-close el-icon-close" @click="closeTerminal()"></div>
           <span class="terminal-title">Terminal<i style="color: orange;">({{ term.sockInfo.host }}:{{ term.sockInfo.port }})</i></span>
           <i style="color:black;"><-------------------></i>
           <span class="terminal-time" style="color:gray;">{{ term.connectedTime }}</span>
         </div>
       </template>
-      <div style="display:flex;">
+      <!-- <div style="display:flex;">
         <div class="dialog-close el-icon-close" @click="closeTerminal()"></div>
         <div class="terminal-console" :id="'terminal-' + term.connectedTime"></div>
-      </div>
-      <!-- <div class="dialog-close el-icon-close" @click="closeTerminal()"></div>
-      <div class="terminal-console" :id="'terminal-' + term.connectedTime"></div> -->
+      </div> -->
+      <!-- <div class="dialog-close el-icon-close" @click="closeTerminal()"></div> -->
+      <div class="terminal-console" :id="'terminal-' + term.connectedTime"></div>
     </el-collapse-item> 
   <!-- </div> -->
 </template>
@@ -118,6 +118,8 @@ export default {
         ele.style.color = 'red'
       }
       this.term.show = false
+      // this.term.term.destroy()
+      // this.termContainer.style.display = 'none';
     },
     initTerminal() {
       console.log('initTerminal', this.term.connectedTime)
